@@ -1,0 +1,102 @@
+ID,Edad,Sexo,Ocupación,Riesgo (%),Nivel
+1,18-22,Mujer,Trabajo,58.00,MODERADO
+2,23-30,Mujer,Estudio,75.00,ALTO
+3,18-22,Hombre,Ambas,37.48,BAJO
+4,18-22,Mujer,Estudio,47.67,MODERADO
+5,18-22,Mujer,Estudio,33.25,BAJO
+6,18-22,Mujer,Trabajo,42.82,MODERADO
+7,mas de 30,Mujer,Trabajo,65.90,ALTO
+8,23-30,Mujer,Trabajo,35.56,BAJO
+9,18-22,Mujer,Trabajo,47.67,MODERADO
+10,18-22,Mujer,Estudio,47.67,MODERADO
+11,18-22,Mujer,Estudio,25.00,BAJO
+12,18-22,Mujer,Estudio,18.38,MUY BAJO
+13,18-22,Mujer,Estudio,32.67,BAJO
+14,23-30,Hombre,Trabajo,16.48,MUY BAJO
+15,mas de 30,Mujer,Trabajo,30.74,BAJO
+16,18-22,Mujer,Estudio,37.61,BAJO
+17,mas de 30,Hombre,Trabajo,44.73,MODERADO
+18,mas de 30,Mujer,Trabajo,17.84,MUY BAJO
+19,18-22,Hombre,Estudio,32.67,BAJO
+20,18-22,Mujer,Estudio,17.84,MUY BAJO
+21,18-22,Mujer,Ambas,75.00,ALTO
+22,18-22,Mujer,Estudio,17.84,MUY BAJO
+23,18-22,Mujer,Estudio,6.67,MUY BAJO
+24,mas de 30,Hombre,Ambas,52.83,MODERADO
+25,18-22,Mujer,Estudio,17.84,MUY BAJO
+26,18-22,Mujer,Estudio,63.44,ALTO
+27,18-22,Mujer,Trabajo,60.47,ALTO
+28,mas de 30,Hombre,Trabajo,16.48,MUY BAJO
+29,mas de 30,Mujer,Trabajo,52.45,MODERADO
+30,18-22,Mujer,Estudio,50.00,MODERADO
+31,23-30,Hombre,Estudio,51.03,MODERADO
+32,18-22,Hombre,Estudio,50.00,MODERADO
+33,18-22,Mujer,Estudio,6.67,MUY BAJO
+34,mas de 30,Mujer,Trabajo,61.67,ALTO
+35,18-22,Mujer,Ambas,45.64,MODERADO
+36,mas de 30,Mujer,Trabajo,19.56,MUY BAJO
+37,23-30,Hombre,Ambas,45.02,MODERADO
+38,18-22,Hombre,Estudio,16.48,MUY BAJO
+39,18-22,Mujer,Estudio,16.48,MUY BAJO
+41,mas de 30,Mujer,Ambas,83.54,CRÍTICO
+42,18-22,Mujer,Estudio,46.41,MODERADO
+43,18-22,Hombre,Estudio,30.74,BAJO
+44,mas de 30,Mujer,Trabajo,18.38,MUY BAJO
+45,18-22,Mujer,Estudio,17.84,MUY BAJO
+46,18-22,Hombre,Ambas,62.02,ALTO
+47,mas de 30,Mujer,Trabajo,30.74,BAJO
+48,mas de 30,Mujer,Trabajo,42.82,MODERADO
+49,mas de 30,Hombre,Trabajo,62.02,ALTO
+50,18-22,Mujer,Ambas,47.86,MODERADO
+51,18-22,Mujer,Ambas,71.79,ALTO
+52,18-22,Hombre,Estudio,91.19,CRÍTICO
+53,mas de 30,Mujer,Ambas,16.48,MUY BAJO
+54,23-30,Mujer,Trabajo,75.00,ALTO
+55,18-22,Mujer,Estudio,16.48,MUY BAJO
+56,18-22,Mujer,Estudio,66.78,ALTO
+57,mas de 30,Hombre,Trabajo,32.67,BAJO
+58,18-22,Hombre,Trabajo,48.57,MODERADO
+59,18-22,Mujer,Trabajo,60.47,ALTO
+60,23-30,Hombre,Ambas,36.28,BAJO
+61,mas de 30,Mujer,Ambas,63.31,ALTO
+62,mas de 30,Mujer,Trabajo,32.67,BAJO
+63,mas de 30,Hombre,Trabajo,30.74,BAJO
+64,23-30,Hombre,Ambas,81.80,CRÍTICO
+65,mas de 30,Hombre,Trabajo,16.48,MUY BAJO
+66,18-22,Hombre,Estudio,38.39,BAJO
+67,23-30,Hombre,Trabajo,58.61,MODERADO
+68,23-30,Hombre,Trabajo,32.96,BAJO
+69,mas de 30,Hombre,Trabajo,45.64,MODERADO
+70,mas de 30,Hombre,Trabajo,42.82,MODERADO
+71,mas de 30,Mujer,Trabajo,30.16,BAJO
+72,mas de 30,Mujer,Trabajo,25.00,BAJO
+73,18-22,Mujer,Estudio,50.00,MODERADO
+74,18-22,Hombre,Trabajo,46.76,MODERADO
+75,18-22,Hombre,Ambas,46.12,MODERADO
+76,18-22,Hombre,Estudio,18.38,MUY BAJO
+77,18-22,Mujer,Estudio,16.48,MUY BAJO
+78,mas de 30,Mujer,Trabajo,18.38,MUY BAJO
+79,18-22,Mujer,Estudio,32.67,BAJO
+80,18-22,Hombre,Ambas,42.82,MODERADO
+81,mas de 30,Mujer,Trabajo,50.00,MODERADO
+82,mas de 30,Mujer,Trabajo,16.48,MUY BAJO
+83,mas de 30,Mujer,Trabajo,63.31,ALTO
+84,mas de 30,Hombre,Ambas,54.15,MODERADO
+85,mas de 30,Mujer,Trabajo,63.12,ALTO
+86,mas de 30,Mujer,Trabajo,63.31,ALTO
+87,mas de 30,Hombre,Trabajo,17.84,MUY BAJO
+88,mas de 30,Hombre,Trabajo,75.00,ALTO
+89,mas de 30,Mujer,Trabajo,42.82,MODERADO
+90,mas de 30,Hombre,Trabajo,45.64,MODERADO
+91,mas de 30,Hombre,Trabajo,32.67,BAJO
+92,mas de 30,Hombre,Trabajo,18.38,MUY BAJO
+93,23-30,Hombre,Trabajo,50.00,MODERADO
+94,mas de 30,Hombre,Trabajo,50.00,MODERADO
+95,mas de 30,Hombre,Trabajo,37.61,BAJO
+96,18-22,Mujer,Estudio,47.55,MODERADO
+97,mas de 30,Hombre,Trabajo,83.54,CRÍTICO
+98,mas de 30,Mujer,Trabajo,45.64,MODERADO
+99,18-22,Hombre,Estudio,30.16,BAJO
+100,mas de 30,Mujer,Trabajo,84.86,CRÍTICO
+101,23-30,Hombre,Estudio,18.38,MUY BAJO
+102,18-22,Hombre,Ambas,41.28,MODERADO
