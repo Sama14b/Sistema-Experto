@@ -52,36 +52,46 @@ sistema_experto/
 └── README.md
 ```
 
-## Instalación y ejecución
+## Instalación y Ejecución
 
-### 1. Instalación de dependencias
-Desde la terminal de Visual Studio Code (con la carpeta del proyecto abierta), ejecuta:
+Para asegurar que el sistema funcione correctamente en cualquier sistema operativo (especialmente en Linux/Ubuntu) y no interfiera con otras librerías, es **imprescindible** el uso de un entorno virtual.
+
+### 1. Configuración del entorno (Solo la primera vez)
+Desde la terminal, dentro de la carpeta del proyecto (`Sistema-Experto`), ejecuta los siguientes comandos en orden:
+
 ```bash
+# Crear el entorno virtual
+python3 -m venv venv
+
+# Activar el entorno
+source venv/bin/activate
+
+# Instalar las dependencias (scikit-fuzzy, numpy, matplotlib, scipy)
 pip install -r requirements.txt
 ```
 
 ### 2. Ejecutar todo el sistema (gráficas + batch)
-Para generar todas las gráficas y procesar la encuesta de una sola vez:
+Una vez activado el entorno (verás el prefijo (venv) en la terminal), podemos generar todos los resultados de una sola vez:
 ```bash
-python burnout_graficas.py && python burnout_batch.py
+python3 burnout_graficas.py && python3 burnout_batch.py
 ```
 
 ### 3. Ejecución de archivos individuales
 
 **Sistema principal (entrada manual):**
 ```bash
-python burnout_sistema_experto.py
+python3 burnout_sistema_experto.py
 ```
 
 **Generar gráficas de funciones de pertenencia:**
 ```bash
-python burnout_graficas.py
+python3 burnout_graficas.py
 # Las gráficas se guardan en la carpeta graficas/
 ```
 
 **Procesamiento batch de la encuesta:**
 ```bash
-python burnout_batch.py
+python3 burnout_batch.py
 # Los resultados se guardan en la carpeta resultados/
 ```
 

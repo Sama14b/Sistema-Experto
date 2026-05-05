@@ -8,9 +8,7 @@ import csv
 import re
 import os
 
-# =============================================================================
 # 1. Variables y funciones de pertenencia
-# =============================================================================
 x_carga = np.arange(1, 11, 1)
 x_cal_sueno = np.arange(1, 11, 1)
 x_horas_sueno = np.arange(0, 15, 1)
@@ -65,9 +63,7 @@ riesgo_moderado = fuzz.trimf(x_riesgo, [30,50,70])
 riesgo_alto = fuzz.trimf(x_riesgo, [60,75,90])
 riesgo_critico = fuzz.trapmf(x_riesgo, [80,90,100,100])
 
-# =============================================================================
 # 2. Funciones auxiliares
-# =============================================================================
 def limpiar_numero(valor):
     match = re.match(r'(\d+)', str(valor).strip())
     return int(match.group(1)) if match else 0
@@ -139,6 +135,8 @@ def evaluar_burnout(p_carga, p_cal_sueno, p_horas_sueno, p_estres,
     r.append(np.fmin(np.fmin(np.fmin(f['ago_oca'], f['est_baj']), f['car_lig']), riesgo_bajo))
     r.append(np.fmin(np.fmin(np.fmin(f['fat_nul'], f['cal_exc']), f['est_baj']), riesgo_muy_bajo))
     r.append(np.fmin(np.fmin(f['est_cro'], f['sue_ins']), riesgo_alto))
+    r.append(np.fmin(np.fmin(f['car_man'], f['est_mod']), riesgo_moderado)) # R50
+    r.append(np.fmin(np.fmin(f['ago_rar'], f['est_baj']), riesgo_muy_bajo)) # R51
     # Bloque B
     r.append(np.fmin(np.fmin(f['dep_cin'], f['ago_per']), riesgo_critico))
     r.append(np.fmin(np.fmin(f['dep_dis'], f['car_man']), riesgo_moderado))
@@ -169,11 +167,13 @@ def evaluar_burnout(p_carga, p_cal_sueno, p_horas_sueno, p_estres,
     r.append(np.fmin(np.fmin(f['des_baj'], f['est_cro']), riesgo_critico))
     r.append(np.fmin(np.fmin(f['sat_alt'], f['ago_fre']), riesgo_moderado))
     r.append(np.fmin(np.fmin(np.fmin(f['apo_med'], f['car_man']), f['des_med']), riesgo_bajo))
+    r.append(np.fmin(np.fmin(f['apo_alt'], f['aut_ple']), riesgo_muy_bajo)) # R49
     # Bloque F
     r.append(np.fmin(np.fmin(np.fmin(f['des_baj'], f['cal_pob']), f['fat_sev']), riesgo_critico))
     r.append(np.fmin(np.fmin(np.fmin(f['des_med'], f['cal_ace']), f['sue_sal']), riesgo_moderado))
     r.append(np.fmin(np.fmin(np.fmin(f['des_alt'], f['ago_oca']), f['est_baj']), riesgo_muy_bajo))
     r.append(np.fmin(np.fmin(np.fmin(f['sat_baj'], f['des_baj']), f['ago_per']), riesgo_critico))
+    r.append(np.fmin(np.fmin(f['cal_ace'], f['ago_oca']), riesgo_bajo))     # R52
     # Bloque G
     r.append(np.fmin(np.fmin(np.fmin(f['car_abr'], f['apo_baj']), f['dep_cin']), riesgo_critico))
     r.append(np.fmin(np.fmin(np.fmin(f['est_alt'], f['sat_baj']), f['uti_nul']), riesgo_critico))
@@ -185,6 +185,12 @@ def evaluar_burnout(p_carga, p_cal_sueno, p_horas_sueno, p_estres,
     r.append(np.fmin(np.fmin(np.fmin(f['uti_val'], f['sat_alt']), f['ago_rar']), riesgo_muy_bajo))
     r.append(np.fmin(np.fmin(np.fmin(f['dep_dis'], f['sat_baj']), f['apo_baj']), riesgo_alto))
     r.append(np.fmin(np.fmin(np.fmin(f['fat_lev'], f['des_med']), f['sat_med']), riesgo_moderado))
+    r.append(np.fmin(np.fmin(f['car_abr'], f['est_mod']), riesgo_alto)) # R53
+    r.append(np.fmin(np.fmin(f['ago_fre'], f['est_alt']), riesgo_alto)) # R54
+    r.append(np.fmin(np.fmin(f['ago_oca'], f['est_mod']), riesgo_moderado)) # R55
+    r.append(np.fmin(np.fmin(f['ago_rar'], f['est_mod']), riesgo_muy_bajo)) # R56
+
+    
 
     aggregated = np.maximum.reduce(r)
     resultado = fuzz.defuzz(x_riesgo, aggregated, 'centroid')
@@ -195,13 +201,11 @@ def evaluar_burnout(p_carga, p_cal_sueno, p_horas_sueno, p_estres,
     else: nivel = "CRÍTICO"
     return resultado, nivel
 
-# =============================================================================
 # 3. Cargar y procesar CSV
-# =============================================================================
-CSV_PATH = 'Encuesta sobre Bienestar y Carga de Trabajo .csv'
+CSV_PATH = 'encuesta.csv'
 
 print("=" * 65)
-print("   PROCESAMIENTO BATCH - SISTEMA EXPERTO BURNOUT")
+print("PROCESAMIENTO BATCH - SISTEMA EXPERTO BURNOUT")
 print("=" * 65)
 
 resultados = []
@@ -244,11 +248,9 @@ with open(CSV_PATH, 'r', encoding='utf-8') as file:
                              'ocupacion': ocupacion, 'riesgo': resultado, 'nivel': nivel})
             print(f"  Persona {i+1:3d}: {resultado:5.1f}% - {nivel}")
         except Exception as e:
-            print(f"  ⚠ Error en fila {i+1}: {e}")
+            print(f"Error en fila {i+1}: {e}")
 
-# =============================================================================
 # 4. Guardar resultados
-# =============================================================================
 os.makedirs('resultados', exist_ok=True)
 with open('resultados/resultados_burnout.csv', 'w', newline='', encoding='utf-8') as f:
     writer = csv.writer(f)
@@ -256,11 +258,9 @@ with open('resultados/resultados_burnout.csv', 'w', newline='', encoding='utf-8'
     for r2 in resultados:
         writer.writerow([r2['id'], r2['edad'], r2['sexo'], r2['ocupacion'],
                         f"{r2['riesgo']:.2f}", r2['nivel']])
-print(f"\n✅ Resultados guardados en resultados/resultados_burnout.csv")
+print(f"\nResultados guardados en resultados/resultados_burnout.csv")
 
-# =============================================================================
 # 5. Estadísticas y visualización
-# =============================================================================
 riesgos = [r2['riesgo'] for r2 in resultados]
 niveles = [r2['nivel'] for r2 in resultados]
 print(f"\n{'=' * 45}")
@@ -297,4 +297,4 @@ for bar, c in zip(barras, cats):
 
 plt.tight_layout()
 plt.savefig('resultados/distribucion_burnout.png', dpi=150, bbox_inches='tight')
-print(f"\n✅ Gráfica guardada en resultados/distribucion_burnout.png")
+print(f"\nGráfica guardada en resultados/distribucion_burnout.png")

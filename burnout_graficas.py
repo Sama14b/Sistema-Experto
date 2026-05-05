@@ -121,4 +121,4 @@ plot_mf(x_riesgo,
     ['#2196F3','#4CAF50','#FFC107','#FF9800','#F44336'],
     'Variable de Salida: Riesgo de Burnout', 'Nivel de Riesgo (%)', '13_riesgo_burnout')
 
-print(f"\n✅ 13 gráficas guardadas en graficas/")
+print(f"\n13 gráficas guardadas en graficas/")
