@@ -3,9 +3,7 @@ import numpy as np
 import skfuzzy as fuzz
 import matplotlib.pyplot as plt
 
-# =============================================================================
 # 1. UNIVERSOS DE DISCURSO (Variables lingüísticas)
-# =============================================================================
 x_horas_ded = np.arange(0, 17, 1)        # Horas dedicación estudio/trabajo (0-16)
 x_carga = np.arange(1, 11, 1)            # Carga de trabajo percibida (1-10)
 x_horas_sueno = np.arange(0, 15, 1)      # Horas de sueño (0-14)
@@ -14,99 +12,95 @@ x_estres = np.arange(1, 11, 1)           # Estrés diario (1-10)
 x_mbi = np.arange(0, 7, 1)              # Escala MBI para todas las preguntas (0-6)
 x_riesgo = np.arange(0, 101, 1)          # Variable de salida: riesgo burnout (0-100)
 
-# =============================================================================
 # 2. FUNCIONES DE PERTENENCIA
-# =============================================================================
 
-# --- Horas de dedicación diaria ---
+# Horas de dedicación diaria
 ded_reducida = fuzz.trimf(x_horas_ded, [0, 0, 5])
 ded_estandar = fuzz.trimf(x_horas_ded, [4, 7, 10])
 ded_excesiva = fuzz.trapmf(x_horas_ded, [9, 12, 16, 16])
 
-# --- Carga de trabajo percibida ---
+# Carga de trabajo percibida 
 carga_ligera = fuzz.trimf(x_carga, [1, 1, 4])
 carga_manejable = fuzz.trimf(x_carga, [3, 5, 7])
 carga_abrumadora = fuzz.trapmf(x_carga, [6, 8, 10, 10])
 
-# --- Horas de sueño ---
+# Horas de sueño
 sueno_insuficiente = fuzz.trimf(x_horas_sueno, [0, 0, 5])
 sueno_saludable = fuzz.trimf(x_horas_sueno, [5, 7, 9])
 sueno_prolongado = fuzz.trapmf(x_horas_sueno, [8, 10, 14, 14])
 
-# --- Calidad del sueño ---
+# Calidad del sueño
 cal_insuficiente = fuzz.trimf(x_cal_sueno, [1, 1, 3])
 cal_pobre = fuzz.trimf(x_cal_sueno, [2, 4, 6])
 cal_aceptable = fuzz.trimf(x_cal_sueno, [5, 7, 9])
 cal_excelente = fuzz.trapmf(x_cal_sueno, [8, 9, 10, 10])
 
-# --- Estrés diario ---
+# Estrés diario
 est_bajo = fuzz.trimf(x_estres, [1, 1, 3])
 est_moderado = fuzz.trimf(x_estres, [2, 4, 6])
 est_alto = fuzz.trimf(x_estres, [5, 7, 9])
 est_cronico = fuzz.trapmf(x_estres, [8, 9, 10, 10])
 
-# --- Agotamiento emocional (MBI 0-6) ---
+# Agotamiento emocional (MBI 0-6)
 agot_raro = fuzz.trimf(x_mbi, [0, 0, 2])
 agot_ocasional = fuzz.trimf(x_mbi, [1, 2.5, 4])
 agot_frecuente = fuzz.trimf(x_mbi, [3, 4, 5])
 agot_persistente = fuzz.trapmf(x_mbi, [4, 5, 6, 6])
 
-# --- Fatiga anticipatoria (MBI 0-6) ---
+# Fatiga anticipatoria (MBI 0-6)
 fat_nula = fuzz.trimf(x_mbi, [0, 0, 2])
 fat_leve = fuzz.trimf(x_mbi, [1, 3, 5])
 fat_severa = fuzz.trapmf(x_mbi, [4, 5, 6, 6])
 
-# --- Saturación mental (MBI 0-6) ---
+# Saturación mental (MBI 0-6) 
 sat_controlado = fuzz.trimf(x_mbi, [0, 0, 2])
 sat_al_limite = fuzz.trimf(x_mbi, [1, 3, 5])
 sat_desbordado = fuzz.trapmf(x_mbi, [4, 5, 6, 6])
 
-# --- Despersonalización / Cinismo (MBI 0-6) ---
+# Despersonalización / Cinismo (MBI 0-6)
 desp_empatico = fuzz.trimf(x_mbi, [0, 0, 2])
 desp_distante = fuzz.trimf(x_mbi, [1, 3, 5])
 desp_cinico = fuzz.trapmf(x_mbi, [4, 5, 6, 6])
 
-# --- Indiferencia (MBI 0-6) ---
+# Indiferencia (MBI 0-6)
 ind_comprometido = fuzz.trimf(x_mbi, [0, 0, 2])
 ind_despegado = fuzz.trimf(x_mbi, [1, 3, 5])
 ind_indiferente = fuzz.trapmf(x_mbi, [4, 5, 6, 6])
 
-# --- Deshumanización (MBI 0-6) ---
+# Deshumanización (MBI 0-6) 
 desh_humano = fuzz.trimf(x_mbi, [0, 0, 2])
 desh_distante = fuzz.trimf(x_mbi, [1, 3, 5])
 desh_deshumanizado = fuzz.trapmf(x_mbi, [4, 5, 6, 6])
 
-# --- Percepción de utilidad (MBI 0-6, INVERTIDA) ---
+# Percepción de utilidad (MBI 0-6, INVERTIDA)
 util_nulo = fuzz.trimf(x_mbi, [0, 0, 2])
 util_productivo = fuzz.trimf(x_mbi, [1, 3, 5])
 util_muy_valioso = fuzz.trapmf(x_mbi, [4, 5, 6, 6])
 
-# --- Autorrealización (MBI 0-6, INVERTIDA) ---
+# Autorrealización (MBI 0-6, INVERTIDA) 
 auto_frustrado = fuzz.trimf(x_mbi, [0, 0, 2])
 auto_satisfecho = fuzz.trimf(x_mbi, [1, 3, 5])
 auto_plenamente = fuzz.trapmf(x_mbi, [4, 5, 6, 6])
 
-# --- Competencia percibida (MBI 0-6, INVERTIDA) ---
+# Competencia percibida (MBI 0-6, INVERTIDA)
 comp_nula = fuzz.trimf(x_mbi, [0, 0, 2])
 comp_adecuada = fuzz.trimf(x_mbi, [1, 3, 5])
 comp_destacada = fuzz.trapmf(x_mbi, [4, 5, 6, 6])
 
-# --- VARIABLE DE SALIDA: Riesgo de Burnout (0-100) ---
+# VARIABLE DE SALIDA: Riesgo de Burnout (0-100) 
 riesgo_muy_bajo = fuzz.trimf(x_riesgo, [0, 0, 20])
 riesgo_bajo = fuzz.trimf(x_riesgo, [10, 25, 40])
 riesgo_moderado = fuzz.trimf(x_riesgo, [30, 50, 70])
 riesgo_alto = fuzz.trimf(x_riesgo, [60, 75, 90])
 riesgo_critico = fuzz.trapmf(x_riesgo, [80, 90, 100, 100])
 
-# =============================================================================
 # 3. ENTRADA DEL USUARIO
-# =============================================================================
 print("=" * 65)
 print("   SISTEMA EXPERTO: DETECCIÓN DE RIESGO DE BURNOUT")
 print("=" * 65)
 print("\nResponde con sinceridad basándote en tu rutina actual.\n")
 
-# --- Variables demográficas (modificadores contextuales) ---
+# Variables demográficas (modificadores contextuales) 
 print("1: 18-22 años")
 print("2: 23-30 años")
 print("3: Más de 30 años")
@@ -121,14 +115,14 @@ print("2: Trabajo")
 print("3: Ambas")
 p_ocupacion = int(input("Ocupación actual (1/2/3): "))
 
-# --- Variables difusas continuas ---
+# Variables difusas continuas
 p_horas_ded = int(input("\n¿Cuántas horas al día dedicas de media al estudio o trabajo?: "))
 p_carga = int(input("¿Cómo de alta percibes tu carga de trabajo? (1-10): "))
 p_horas_sueno = int(input("¿Cuántas horas duermes de media al día?: "))
 p_cal_sueno = int(input("¿Cómo valorarías la calidad de tu sueño? (1-10): "))
 p_estres = int(input("¿Cuánto estrés sientes en tu día a día? (1-10): "))
 
-# --- Preguntas MBI (0-6) ---
+# Preguntas MBI (0-6)
 print("\nIndica con qué frecuencia experimentas las siguientes situaciones:")
 print("  0: Nunca | 1: Pocas veces al año | 2: Una vez al mes o menos")
 print("  3: Unas pocas veces al mes | 4: Una vez a la semana")
@@ -144,9 +138,7 @@ p_utilidad = int(input("Siento que hago cosas útiles y valiosas (0-6): "))
 p_autorrealizacion = int(input("Me siento realizado con lo que hago (0-6): "))
 p_competencia = int(input("Creo que soy bueno en lo que hago (0-6): "))
 
-# =============================================================================
 # 4. FUZZIFICACIÓN (Interpolación de grados de pertenencia)
-# =============================================================================
 
 # Horas de dedicación
 f_ded_reducida = fuzz.interp_membership(x_horas_ded, ded_reducida, p_horas_ded)
@@ -221,11 +213,9 @@ f_comp_nula = fuzz.interp_membership(x_mbi, comp_nula, p_competencia)
 f_comp_adecuada = fuzz.interp_membership(x_mbi, comp_adecuada, p_competencia)
 f_comp_destacada = fuzz.interp_membership(x_mbi, comp_destacada, p_competencia)
 
-# =============================================================================
 # 5. REGLAS DE INFERENCIA (50 reglas)
-# =============================================================================
 
-# ---- BLOQUE A: Agotamiento Emocional + Factores de Carga (R1-R15) ----
+# BLOQUE A: Agotamiento Emocional + Factores de Carga (R1-R15)
 
 # R1: SI agotamiento ES persistente Y carga ES abrumadora Y estrés ES crónico → CRÍTICO
 regla1 = np.fmin(np.fmin(f_agot_persistente, f_carga_abrumadora), f_est_cronico)
@@ -287,7 +277,7 @@ act_r14 = np.fmin(regla14, riesgo_alto)
 regla15 = np.fmin(f_carga_abrumadora, f_ded_excesiva)
 act_r15 = np.fmin(regla15, riesgo_alto)
 
-# ---- BLOQUE B: Despersonalización / Cinismo (R16-R25) ----
+# BLOQUE B: Despersonalización / Cinismo (R16-R25)
 
 # R16: SI desp ES cínico Y indiferencia ES indiferente Y deshum ES deshumanizado → CRÍTICO
 regla16 = np.fmin(np.fmin(f_desp_cinico, f_ind_indiferente), f_desh_deshumanizado)
@@ -329,7 +319,7 @@ act_r24 = np.fmin(regla24, riesgo_critico)
 regla25 = np.fmin(f_desp_distante, f_est_alto)
 act_r25 = np.fmin(regla25, riesgo_alto)
 
-# ---- BLOQUE C: Realización Personal (R26-R35, lógica invertida) ----
+# BLOQUE C: Realización Personal (R26-R35, lógica invertida) 
 
 # R26: SI utilidad ES nulo Y autorrealización ES frustrado Y competencia ES nula → CRÍTICO
 regla26 = np.fmin(np.fmin(f_util_nulo, f_auto_frustrado), f_comp_nula)
@@ -371,7 +361,7 @@ act_r34 = np.fmin(regla34, riesgo_bajo)
 regla35 = np.fmin(np.fmin(f_util_productivo, f_desp_empatico), f_est_bajo)
 act_r35 = np.fmin(regla35, riesgo_muy_bajo)
 
-# ---- BLOQUE D: Reglas combinadas multi-dimensión (R36-R50) ----
+# BLOQUE D: Reglas combinadas multi-dimensión (R36-R50) 
 
 # R36: SI agotamiento ES persistente Y desp ES cínico Y utilidad ES nulo → CRÍTICO
 regla36 = np.fmin(np.fmin(f_agot_persistente, f_desp_cinico), f_util_nulo)
@@ -440,9 +430,7 @@ act_r49 = np.fmin(regla49, riesgo_critico)
 regla50 = np.fmin(np.fmin(f_ded_reducida, f_est_bajo), np.fmin(f_auto_plenamente, f_cal_excel))
 act_r50 = np.fmin(regla50, riesgo_muy_bajo)
 
-# =============================================================================
 # 6. AGREGACIÓN DE TODAS LAS SALIDAS
-# =============================================================================
 act_rules = [
     act_r1,  act_r2,  act_r3,  act_r4,  act_r5,
     act_r6,  act_r7,  act_r8,  act_r9,  act_r10,
@@ -458,9 +446,7 @@ act_rules = [
 
 aggregated = np.maximum.reduce(act_rules)
 
-# =============================================================================
 # 7. DEFUZZIFICACIÓN (Método del centroide)
-# =============================================================================
 resultado = fuzz.defuzz(x_riesgo, aggregated, 'centroid')
 grado_riesgo = fuzz.interp_membership(x_riesgo, aggregated, resultado)
 
@@ -481,9 +467,7 @@ print(f"   RESULTADO: Riesgo de Burnout estimado: {resultado:.2f}%")
 print(f"   Nivel: {nivel}")
 print(f"{'=' * 65}")
 
-# =============================================================================
 # 8. VISUALIZACIÓN DEL RESULTADO
-# =============================================================================
 fig, ax0 = plt.subplots(figsize=(10, 4))
 ax0.plot(x_riesgo, riesgo_muy_bajo, 'b', linestyle='--', label='Muy Bajo')
 ax0.plot(x_riesgo, riesgo_bajo, 'c', linestyle='--', label='Bajo')
