@@ -52,27 +52,37 @@ sistema_experto/
 └── README.md
 ```
 
-## Instalación de librerías
+## Instalación y ejecución
 
+### 1. Instalación de dependencias
+Desde la terminal de Visual Studio Code (con la carpeta del proyecto abierta), ejecuta:
 ```bash
-pip install scikit-fuzzy matplotlib numpy scipy
+pip install -r requirements.txt
 ```
 
-### Evaluación individual (entrada manual)
+### 2. Ejecutar todo el sistema (gráficas + batch)
+Para generar todas las gráficas y procesar la encuesta de una sola vez:
+```bash
+python burnout_graficas.py && python burnout_batch.py
+```
+
+### 3. Ejecución de archivos individuales
+
+**Sistema principal (entrada manual):**
 ```bash
 python burnout_sistema_experto.py
 ```
 
-### Generar gráficas de funciones de pertenencia
+**Generar gráficas de funciones de pertenencia:**
 ```bash
 python burnout_graficas.py
-# Las gráficas se guardan en graficas/
+# Las gráficas se guardan en la carpeta graficas/
 ```
 
-### Procesamiento batch de la encuesta
+**Procesamiento batch de la encuesta:**
 ```bash
 python burnout_batch.py
-# Los resultados se guardan en resultados/
+# Los resultados se guardan en la carpeta resultados/
 ```
 
 ## Motor de Inferencia
