@@ -8,9 +8,7 @@ import csv
 import re
 import os
 
-# =============================================================================
 # 1. Definición de variables y funciones de pertenencia (idénticas al principal)
-# =============================================================================
 x_horas_ded = np.arange(0, 17, 1)
 x_carga = np.arange(1, 11, 1)
 x_horas_sueno = np.arange(0, 15, 1)
@@ -91,9 +89,7 @@ riesgo_moderado = fuzz.trimf(x_riesgo, [30, 50, 70])
 riesgo_alto = fuzz.trimf(x_riesgo, [60, 75, 90])
 riesgo_critico = fuzz.trapmf(x_riesgo, [80, 90, 100, 100])
 
-# =============================================================================
 # 2. Funciones auxiliares
-# =============================================================================
 def limpiar_numero(valor):
     """Extrae el número de un string como '4h', '7', '5: Varias veces...'"""
     match = re.match(r'(\d+)', str(valor).strip())
@@ -236,9 +232,7 @@ def evaluar_burnout(p_horas_ded, p_carga, p_horas_sueno, p_cal_sueno, p_estres,
 
     return resultado, nivel
 
-# =============================================================================
 # 3. Cargar y procesar CSV
-# =============================================================================
 CSV_PATH = 'Encuesta sobre Bienestar y Carga de Trabajo .csv'
 
 print("=" * 65)
@@ -292,11 +286,9 @@ with open(CSV_PATH, 'r', encoding='utf-8') as file:
             print(f"  Persona {i+1:3d}: {resultado:5.1f}% - {nivel}")
 
         except Exception as e:
-            print(f"  ⚠ Error en fila {i+1}: {e}")
+            print(f" Error en fila {i+1}: {e}")
 
-# =============================================================================
 # 4. Guardar resultados en CSV
-# =============================================================================
 os.makedirs('resultados', exist_ok=True)
 
 with open('resultados/resultados_burnout.csv', 'w', newline='', encoding='utf-8') as f:
@@ -306,11 +298,9 @@ with open('resultados/resultados_burnout.csv', 'w', newline='', encoding='utf-8'
         writer.writerow([r['id'], r['edad'], r['sexo'], r['ocupacion'],
                         f"{r['riesgo']:.2f}", r['nivel']])
 
-print(f"\n✅ Resultados guardados en resultados/resultados_burnout.csv")
+print(f"\n Resultados guardados en resultados/resultados_burnout.csv")
 
-# =============================================================================
 # 5. Estadísticas y visualización
-# =============================================================================
 riesgos = [r['riesgo'] for r in resultados]
 niveles = [r['nivel'] for r in resultados]
 
@@ -354,4 +344,4 @@ for bar, c in zip(barras, cats):
 plt.tight_layout()
 plt.savefig('resultados/distribucion_burnout.png', dpi=150, bbox_inches='tight')
 plt.show()
-print(f"\n✅ Gráfica guardada en resultados/distribucion_burnout.png")
+print(f"\n Gráfica guardada en resultados/distribucion_burnout.png")

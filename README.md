@@ -52,22 +52,14 @@ sistema_experto/
 └── README.md
 ```
 
-## Instalación
+## Instalación de librerías
 
 ```bash
-# Crear entorno virtual
-python3 -m venv venv
-source venv/bin/activate
-
-# Instalar dependencias
 pip install scikit-fuzzy matplotlib numpy scipy
 ```
 
-## Uso
-
 ### Evaluación individual (entrada manual)
 ```bash
-source venv/bin/activate
 python burnout_sistema_experto.py
 ```
 

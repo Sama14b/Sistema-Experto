@@ -7,9 +7,7 @@ import os
 # Crear directorio para gráficas
 os.makedirs('graficas', exist_ok=True)
 
-# =============================================================================
 # Universos de discurso
-# =============================================================================
 x_horas_ded = np.arange(0, 17, 1)
 x_carga = np.arange(1, 11, 1)
 x_horas_sueno = np.arange(0, 15, 1)
@@ -18,9 +16,7 @@ x_estres = np.arange(1, 11, 1)
 x_mbi = np.arange(0, 7, 1)
 x_riesgo = np.arange(0, 101, 1)
 
-# =============================================================================
 # Función auxiliar para generar y guardar gráficas
-# =============================================================================
 def plot_membership(x, conjuntos, labels, colores, titulo, xlabel, filename):
     fig, ax = plt.subplots(figsize=(8, 4))
     for mf, label, color in zip(conjuntos, labels, colores):
@@ -39,9 +35,7 @@ def plot_membership(x, conjuntos, labels, colores, titulo, xlabel, filename):
 
 print("Generando gráficas de funciones de pertenencia...\n")
 
-# =============================================================================
 # 1. Horas de dedicación
-# =============================================================================
 plot_membership(x_horas_ded,
     [fuzz.trimf(x_horas_ded, [0, 0, 5]),
      fuzz.trimf(x_horas_ded, [4, 7, 10]),
@@ -51,9 +45,7 @@ plot_membership(x_horas_ded,
     'Horas de Dedicación Diaria (Estudio/Trabajo)',
     'Horas', '01_horas_dedicacion')
 
-# =============================================================================
 # 2. Carga de trabajo
-# =============================================================================
 plot_membership(x_carga,
     [fuzz.trimf(x_carga, [1, 1, 4]),
      fuzz.trimf(x_carga, [3, 5, 7]),
@@ -63,9 +55,7 @@ plot_membership(x_carga,
     'Carga de Trabajo Percibida',
     'Nivel (1-10)', '02_carga_trabajo')
 
-# =============================================================================
 # 3. Horas de sueño
-# =============================================================================
 plot_membership(x_horas_sueno,
     [fuzz.trimf(x_horas_sueno, [0, 0, 5]),
      fuzz.trimf(x_horas_sueno, [5, 7, 9]),
@@ -75,9 +65,7 @@ plot_membership(x_horas_sueno,
     'Horas de Sueño Diarias',
     'Horas', '03_horas_sueno')
 
-# =============================================================================
 # 4. Calidad del sueño
-# =============================================================================
 plot_membership(x_cal_sueno,
     [fuzz.trimf(x_cal_sueno, [1, 1, 3]),
      fuzz.trimf(x_cal_sueno, [2, 4, 6]),
@@ -88,9 +76,7 @@ plot_membership(x_cal_sueno,
     'Calidad del Sueño',
     'Nivel (1-10)', '04_calidad_sueno')
 
-# =============================================================================
 # 5. Estrés diario
-# =============================================================================
 plot_membership(x_estres,
     [fuzz.trimf(x_estres, [1, 1, 3]),
      fuzz.trimf(x_estres, [2, 4, 6]),
@@ -101,9 +87,7 @@ plot_membership(x_estres,
     'Nivel de Estrés Diario',
     'Nivel (1-10)', '05_estres')
 
-# =============================================================================
 # 6. Agotamiento emocional
-# =============================================================================
 plot_membership(x_mbi,
     [fuzz.trimf(x_mbi, [0, 0, 2]),
      fuzz.trimf(x_mbi, [1, 2.5, 4]),
@@ -114,9 +98,7 @@ plot_membership(x_mbi,
     'Agotamiento Emocional (MBI)',
     'Frecuencia (0-6)', '06_agotamiento_emocional')
 
-# =============================================================================
 # 7. Fatiga anticipatoria
-# =============================================================================
 plot_membership(x_mbi,
     [fuzz.trimf(x_mbi, [0, 0, 2]),
      fuzz.trimf(x_mbi, [1, 3, 5]),
@@ -126,9 +108,7 @@ plot_membership(x_mbi,
     'Fatiga Anticipatoria (MBI)',
     'Frecuencia (0-6)', '07_fatiga_anticipatoria')
 
-# =============================================================================
 # 8. Saturación mental
-# =============================================================================
 plot_membership(x_mbi,
     [fuzz.trimf(x_mbi, [0, 0, 2]),
      fuzz.trimf(x_mbi, [1, 3, 5]),
@@ -138,9 +118,7 @@ plot_membership(x_mbi,
     'Saturación Mental (MBI)',
     'Frecuencia (0-6)', '08_saturacion_mental')
 
-# =============================================================================
 # 9. Despersonalización / Cinismo
-# =============================================================================
 plot_membership(x_mbi,
     [fuzz.trimf(x_mbi, [0, 0, 2]),
      fuzz.trimf(x_mbi, [1, 3, 5]),
@@ -150,9 +128,7 @@ plot_membership(x_mbi,
     'Despersonalización / Cinismo (MBI)',
     'Frecuencia (0-6)', '09_despersonalizacion')
 
-# =============================================================================
 # 10. Indiferencia
-# =============================================================================
 plot_membership(x_mbi,
     [fuzz.trimf(x_mbi, [0, 0, 2]),
      fuzz.trimf(x_mbi, [1, 3, 5]),
@@ -162,9 +138,7 @@ plot_membership(x_mbi,
     'Indiferencia ante el Entorno (MBI)',
     'Frecuencia (0-6)', '10_indiferencia')
 
-# =============================================================================
 # 11. Deshumanización
-# =============================================================================
 plot_membership(x_mbi,
     [fuzz.trimf(x_mbi, [0, 0, 2]),
      fuzz.trimf(x_mbi, [1, 3, 5]),
@@ -174,9 +148,7 @@ plot_membership(x_mbi,
     'Deshumanización en el Trato (MBI)',
     'Frecuencia (0-6)', '11_deshumanizacion')
 
-# =============================================================================
 # 12. Percepción de utilidad (INVERTIDA)
-# =============================================================================
 plot_membership(x_mbi,
     [fuzz.trimf(x_mbi, [0, 0, 2]),
      fuzz.trimf(x_mbi, [1, 3, 5]),
@@ -186,9 +158,7 @@ plot_membership(x_mbi,
     'Percepción de Utilidad (MBI - Invertida)',
     'Frecuencia (0-6)', '12_utilidad')
 
-# =============================================================================
 # 13. Autorrealización (INVERTIDA)
-# =============================================================================
 plot_membership(x_mbi,
     [fuzz.trimf(x_mbi, [0, 0, 2]),
      fuzz.trimf(x_mbi, [1, 3, 5]),
@@ -198,9 +168,7 @@ plot_membership(x_mbi,
     'Autorrealización (MBI - Invertida)',
     'Frecuencia (0-6)', '13_autorrealizacion')
 
-# =============================================================================
 # 14. Competencia percibida (INVERTIDA)
-# =============================================================================
 plot_membership(x_mbi,
     [fuzz.trimf(x_mbi, [0, 0, 2]),
      fuzz.trimf(x_mbi, [1, 3, 5]),
@@ -210,9 +178,7 @@ plot_membership(x_mbi,
     'Competencia Percibida (MBI - Invertida)',
     'Frecuencia (0-6)', '14_competencia')
 
-# =============================================================================
 # 15. Variable de SALIDA: Riesgo de Burnout
-# =============================================================================
 plot_membership(x_riesgo,
     [fuzz.trimf(x_riesgo, [0, 0, 20]),
      fuzz.trimf(x_riesgo, [10, 25, 40]),
@@ -224,4 +190,4 @@ plot_membership(x_riesgo,
     'Variable de Salida: Riesgo de Burnout',
     'Nivel de Riesgo (%)', '15_riesgo_burnout')
 
-print(f"\n✅ Todas las gráficas guardadas en la carpeta 'graficas/'")
+print(f"\n Todas las gráficas guardadas en la carpeta 'graficas/'")
