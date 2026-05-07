@@ -3,18 +3,24 @@ import numpy as np
 import skfuzzy as fuzz
 import matplotlib.pyplot as plt
 
-# 1. UNIVERSOS DE DISCURSO
-x_carga = np.arange(1, 11, 1)            # Carga de trabajo percibida (1-10)
-x_cal_sueno = np.arange(1, 11, 1)        # Calidad del sueño (1-10)
-x_horas_sueno = np.arange(0, 15, 1)      # Horas de sueño (0-14)
-x_estres = np.arange(1, 11, 1)           # Estrés diario (1-10)
+# 1. Definición de variables
 
-x_mbi = np.arange(0, 7, 1)              # Escala MBI (0-6)
-x_desc = np.arange(1, 4, 1)             # Desconexión mental (1-3)
-x_apoyo = np.arange(1, 4, 1)            # Apoyo social percibido (1-3)
-x_riesgo = np.arange(0, 101, 1)          # SALIDA: riesgo burnout (0-100)
+# variables de entrada
+x_carga = np.arange(1, 11, 1)       
+x_cal_sueno = np.arange(1, 11, 1)     
+x_horas_sueno = np.arange(0, 15, 1)    
+x_estres = np.arange(1, 11, 1)   
+x_desc = np.arange(1, 4, 1)          
+x_apoyo = np.arange(1, 4, 1) 
+# MBI
+x_ae = np.arange(0, 19, 1)  
+x_dp = np.arange(0, 19, 1)
+x_rp = np.arange(0, 25, 1)   
 
-# 2. FUNCIONES DE PERTENENCIA
+# variable de salida
+x_riesgo = np.arange(0, 101, 1) 
+
+# 2. Funciones de pertenencia
 
 # Carga de trabajo percibida (1-10)
 carga_ligera = fuzz.trimf(x_carga, [1, 1, 4])
@@ -38,43 +44,6 @@ est_moderado = fuzz.trimf(x_estres, [2, 4, 6])
 est_alto = fuzz.trimf(x_estres, [5, 7, 9])
 est_cronico = fuzz.trapmf(x_estres, [8, 9, 10, 10])
 
-
-
-# Agotamiento emocional (MBI 0-6)
-agot_raro = fuzz.trimf(x_mbi, [0, 0, 2])
-agot_ocasional = fuzz.trimf(x_mbi, [1, 2.5, 4])
-agot_frecuente = fuzz.trimf(x_mbi, [3, 4, 5])
-agot_persistente = fuzz.trapmf(x_mbi, [4, 5, 6, 6])
-
-# Fatiga anticipatoria (MBI 0-6)
-fat_nula = fuzz.trimf(x_mbi, [0, 0, 2])
-fat_leve = fuzz.trimf(x_mbi, [1, 3, 5])
-fat_severa = fuzz.trapmf(x_mbi, [4, 5, 6, 6])
-
-# Despersonalización / Cinismo (MBI 0-6)
-desp_empatico = fuzz.trimf(x_mbi, [0, 0, 2])
-desp_distante = fuzz.trimf(x_mbi, [1, 3, 5])
-desp_cinico = fuzz.trapmf(x_mbi, [4, 5, 6, 6])
-
-
-
-# Percepción de utilidad (MBI 0-6, INVERTIDA)
-util_nulo = fuzz.trimf(x_mbi, [0, 0, 2])
-util_productivo = fuzz.trimf(x_mbi, [1, 3, 5])
-util_muy_valioso = fuzz.trapmf(x_mbi, [4, 5, 6, 6])
-
-# Autorrealización (MBI 0-6, INVERTIDA)
-auto_frustrado = fuzz.trimf(x_mbi, [0, 0, 2])
-auto_satisfecho = fuzz.trimf(x_mbi, [1, 3, 5])
-auto_plenamente = fuzz.trapmf(x_mbi, [4, 5, 6, 6])
-
-
-
-# Satisfacción laboral (MBI 0-6, INVERTIDA)
-satis_bajo = fuzz.trimf(x_mbi, [0, 0, 2])
-satis_medio = fuzz.trimf(x_mbi, [1, 3, 5])
-satis_alto = fuzz.trapmf(x_mbi, [4, 5, 6, 6])
-
 # Desconexión mental (1-3)
 desc_bajo = fuzz.trimf(x_desc, [1, 1, 2])
 desc_medio = fuzz.trimf(x_desc, [1, 2, 3])
@@ -85,20 +54,51 @@ apoyo_bajo = fuzz.trimf(x_apoyo, [1, 1, 2])
 apoyo_medio = fuzz.trimf(x_apoyo, [1, 2, 3])
 apoyo_alto = fuzz.trimf(x_apoyo, [2, 3, 3])
 
-# VARIABLE DE SALIDA: Riesgo de Burnout (0-100)
+# Agotamiento Emocional (MBI 0-18)
+agot_raro        = fuzz.trapmf(x_ae, [0, 0, 2, 5])
+agot_ocasional   = fuzz.trimf(x_ae, [3, 7, 12])
+agot_frecuente   = fuzz.trimf(x_ae, [9, 13, 16])
+agot_persistente = fuzz.trapmf(x_ae, [13, 16, 18, 18])
+
+# Fatiga anticipatoria (MBI 0-18)
+fat_nula   = fuzz.trimf(x_ae, [0, 0, 5])
+fat_leve   = fuzz.trimf(x_ae, [4, 9, 14])
+fat_severa = fuzz.trapmf(x_ae, [12, 15, 18, 18])
+
+# Despersonalización (MBI 0-18)
+desp_empatico = fuzz.trapmf(x_dp, [0, 0, 3, 6])
+desp_distante = fuzz.trimf(x_dp, [4, 9, 14])
+desp_cinico   = fuzz.trapmf(x_dp, [12, 15, 18, 18])
+
+# Percepción de utilidad (subescala RP 0-24, INVERTIDA)
+util_nulo        = fuzz.trapmf(x_rp, [0, 0, 6, 10])
+util_productivo  = fuzz.trimf(x_rp, [8, 14, 20])
+util_muy_valioso = fuzz.trapmf(x_rp, [17, 21, 24, 24])
+
+# Autorrealización (MBI 0-6, INVERTIDA)
+auto_frustrado   = fuzz.trapmf(x_rp, [0, 0, 6, 10])   
+auto_satisfecho  = fuzz.trimf(x_rp, [8, 14, 20])
+auto_plenamente  = fuzz.trapmf(x_rp, [17, 21, 24, 24])
+
+# Satisfacción laboral (MBI 0-18, INVERTIDA)
+satis_bajo  = fuzz.trapmf(x_rp, [0, 0, 6, 10])          
+satis_medio = fuzz.trimf(x_rp, [8, 14, 20])
+satis_alto  = fuzz.trapmf(x_rp, [17, 21, 24, 24])
+
+# SALIDA: Riesgo de Burnout (0-100)
 riesgo_muy_bajo = fuzz.trimf(x_riesgo, [0, 0, 20])
 riesgo_bajo = fuzz.trimf(x_riesgo, [10, 25, 40])
 riesgo_moderado = fuzz.trimf(x_riesgo, [30, 50, 70])
 riesgo_alto = fuzz.trimf(x_riesgo, [60, 75, 90])
 riesgo_critico = fuzz.trapmf(x_riesgo, [80, 90, 100, 100])
 
-# 3. ENTRADA DEL USUARIO
+# 3. Encuesta
 print("=" * 65)
 print("   SISTEMA EXPERTO: DETECCIÓN DE RIESGO DE BURNOUT")
 print("=" * 65)
 print("\nResponde con sinceridad basándote en tu rutina actual.\n")
 
-# Variables demográficas
+# variables demográficas
 print("1: 18-22 años | 2: 23-30 años | 3: Más de 30 años")
 p_edad = int(input("¿Qué edad tienes? (1/2/3): "))
 
@@ -108,14 +108,13 @@ p_sexo = int(input("Sexo (1/2): "))
 print("\n1: Estudio | 2: Trabajo | 3: Ambas")
 p_ocupacion = int(input("Ocupación actual (1/2/3): "))
 
-# Variables difusas continuas
-
+# variables difusas continuas
 p_carga = int(input("¿Cómo de alta percibes tu carga de trabajo? (1-10): "))
 p_horas_sueno = int(input("¿Cuántas horas duermes de media al día?: "))
 p_cal_sueno = int(input("¿Cómo valorarías la calidad de tu sueño? (1-10): "))
 p_estres = int(input("¿Cuánto estrés sientes en tu día a día? (1-10): "))
 
-# Preguntas MBI (0-6)
+# preguntas MBI (0-6)
 print("\nIndica la frecuencia (0-6):")
 print("  0: Nunca | 1: Pocas veces al año | 2: Una vez al mes o menos")
 print("  3: Unas pocas veces al mes | 4: Una vez a la semana")
@@ -129,22 +128,31 @@ p_utilidad = int(input("Siento que hago cosas útiles y valiosas (0-6): "))
 p_autorrealizacion = int(input("Me siento realizado con lo que hago (0-6): "))
 
 p_satisfaccion = int(input("Estoy satisfecho en mi entorno laboral (0-6): "))
+p_saturacion = int(input("Siento que ya no puedo más mentalmente (0-6): "))
+p_indiferencia = int(input("Me da igual lo que pase en mi entorno (0-6): "))
+p_deshumanizacion = int(input("Trato a las personas como si fueran objetos (0-6): "))
+p_competencia = int(input("Creo que soy bueno en lo que hago (0-6): "))
 
-# Desconexión mental (1-3)
+# desconexión mental (1-3)
 print("\n¿Sigues pensando en tareas pendientes fuera de tu jornada?")
 print("  1: Nunca o casi nunca")
 print("  2: A veces, especialmente en días de mucha carga")
 print("  3: Siempre o casi siempre")
 p_desconexion = int(input("Opción (1/2/3): "))
 
-# Apoyo social percibido (1-3)
+# apoyo social percibido (1-3)
 print("\n¿Sientes que tus compañeros/supervisores se preocupan por tu bienestar?")
 print("  1: No, el trato es distante")
 print("  2: Trato cordial, pero sin apoyo emocional profundo")
 print("  3: Sí, me siento valorado y respaldado")
 p_apoyo = int(input("Opción (1/2/3): "))
 
-# 4. FUZZIFICACIÓN
+# dimensiones MBI
+ae = p_agotamiento + p_fatiga + p_saturacion  
+dp = p_despersonalizacion + p_indiferencia + p_deshumanizacion  
+rp = p_utilidad + p_autorrealizacion + p_satisfaccion + p_competencia 
+
+# 4. Fuzzificación
 f_car_lig = fuzz.interp_membership(x_carga, carga_ligera, p_carga)
 f_car_man = fuzz.interp_membership(x_carga, carga_manejable, p_carga)
 f_car_abr = fuzz.interp_membership(x_carga, carga_abrumadora, p_carga)
@@ -164,35 +172,33 @@ f_est_alt = fuzz.interp_membership(x_estres, est_alto, p_estres)
 f_est_cro = fuzz.interp_membership(x_estres, est_cronico, p_estres)
 
 
+# Subescala AE (agotamiento emocional agregado: 0-18)
+f_ago_rar = fuzz.interp_membership(x_ae, agot_raro, ae)
+f_ago_oca = fuzz.interp_membership(x_ae, agot_ocasional, ae)
+f_ago_fre = fuzz.interp_membership(x_ae, agot_frecuente, ae)
+f_ago_per = fuzz.interp_membership(x_ae, agot_persistente, ae)
 
-f_ago_rar = fuzz.interp_membership(x_mbi, agot_raro, p_agotamiento)
-f_ago_oca = fuzz.interp_membership(x_mbi, agot_ocasional, p_agotamiento)
-f_ago_fre = fuzz.interp_membership(x_mbi, agot_frecuente, p_agotamiento)
-f_ago_per = fuzz.interp_membership(x_mbi, agot_persistente, p_agotamiento)
+f_fat_nul = fuzz.interp_membership(x_ae, fat_nula, ae)
+f_fat_lev = fuzz.interp_membership(x_ae, fat_leve, ae)
+f_fat_sev = fuzz.interp_membership(x_ae, fat_severa, ae)
 
-f_fat_nul = fuzz.interp_membership(x_mbi, fat_nula, p_fatiga)
-f_fat_lev = fuzz.interp_membership(x_mbi, fat_leve, p_fatiga)
-f_fat_sev = fuzz.interp_membership(x_mbi, fat_severa, p_fatiga)
+# Subescala DP (despersonalización agregada: 0-18)
+f_dep_emp = fuzz.interp_membership(x_dp, desp_empatico, dp)
+f_dep_dis = fuzz.interp_membership(x_dp, desp_distante, dp)
+f_dep_cin = fuzz.interp_membership(x_dp, desp_cinico, dp)
 
-f_dep_emp = fuzz.interp_membership(x_mbi, desp_empatico, p_despersonalizacion)
-f_dep_dis = fuzz.interp_membership(x_mbi, desp_distante, p_despersonalizacion)
-f_dep_cin = fuzz.interp_membership(x_mbi, desp_cinico, p_despersonalizacion)
+# Subescala RP (realización personal agregada: 0-24)
+f_uti_nul = fuzz.interp_membership(x_rp, util_nulo, rp)
+f_uti_pro = fuzz.interp_membership(x_rp, util_productivo, rp)
+f_uti_val = fuzz.interp_membership(x_rp, util_muy_valioso, rp)
 
+f_aut_fru = fuzz.interp_membership(x_rp, auto_frustrado, rp)
+f_aut_sat = fuzz.interp_membership(x_rp, auto_satisfecho, rp)
+f_aut_ple = fuzz.interp_membership(x_rp, auto_plenamente, rp)
 
-
-f_uti_nul = fuzz.interp_membership(x_mbi, util_nulo, p_utilidad)
-f_uti_pro = fuzz.interp_membership(x_mbi, util_productivo, p_utilidad)
-f_uti_val = fuzz.interp_membership(x_mbi, util_muy_valioso, p_utilidad)
-
-f_aut_fru = fuzz.interp_membership(x_mbi, auto_frustrado, p_autorrealizacion)
-f_aut_sat = fuzz.interp_membership(x_mbi, auto_satisfecho, p_autorrealizacion)
-f_aut_ple = fuzz.interp_membership(x_mbi, auto_plenamente, p_autorrealizacion)
-
-
-
-f_sat_baj = fuzz.interp_membership(x_mbi, satis_bajo, p_satisfaccion)
-f_sat_med = fuzz.interp_membership(x_mbi, satis_medio, p_satisfaccion)
-f_sat_alt = fuzz.interp_membership(x_mbi, satis_alto, p_satisfaccion)
+f_sat_baj = fuzz.interp_membership(x_rp, satis_bajo, rp)
+f_sat_med = fuzz.interp_membership(x_rp, satis_medio, rp)
+f_sat_alt = fuzz.interp_membership(x_rp, satis_alto, rp)
 
 f_des_baj = fuzz.interp_membership(x_desc, desc_bajo, p_desconexion)
 f_des_med = fuzz.interp_membership(x_desc, desc_medio, p_desconexion)
@@ -202,7 +208,7 @@ f_apo_baj = fuzz.interp_membership(x_apoyo, apoyo_bajo, p_apoyo)
 f_apo_med = fuzz.interp_membership(x_apoyo, apoyo_medio, p_apoyo)
 f_apo_alt = fuzz.interp_membership(x_apoyo, apoyo_alto, p_apoyo)
 
-# 5. REGLAS DE INFERENCIA (48 reglas)
+# 5. Reglas de inferencia
 
 # BLOQUE A: Agotamiento Emocional + Factores de Carga (R1-R8) 
 
@@ -339,7 +345,7 @@ act_r56 = np.fmin(np.fmin(f_ago_rar, f_est_mod), riesgo_muy_bajo)
 
 
 
-# 6. AGREGACIÓN DE TODAS LAS SALIDAS
+# 6. Agregación
 act_rules = [
     act_r1,  act_r2,  act_r3,  act_r4,  act_r5,  act_r6,  act_r7,  act_r8,
     act_r9,  act_r10, act_r11, act_r12, act_r13, act_r14, act_r15, act_r16,
@@ -352,7 +358,7 @@ act_rules = [
 
 aggregated = np.maximum.reduce(act_rules)
 
-# 7. DEFUZZIFICACIÓN (Método del centroide)
+# 7. Defuzzificación
 resultado = fuzz.defuzz(x_riesgo, aggregated, 'centroid')
 grado_riesgo = fuzz.interp_membership(x_riesgo, aggregated, resultado)
 
@@ -372,7 +378,7 @@ print(f"   RESULTADO: Riesgo de Burnout estimado: {resultado:.2f}%")
 print(f"   Nivel: {nivel}")
 print(f"{'=' * 65}")
 
-# 8. VISUALIZACIÓN DEL RESULTADO
+# 8. Gráfica del resultado
 fig, ax0 = plt.subplots(figsize=(10, 4))
 ax0.plot(x_riesgo, riesgo_muy_bajo, 'b', linestyle='--', label='Muy Bajo')
 ax0.plot(x_riesgo, riesgo_bajo, 'c', linestyle='--', label='Bajo')

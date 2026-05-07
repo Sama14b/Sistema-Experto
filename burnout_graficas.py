@@ -13,10 +13,12 @@ x_carga = np.arange(1, 11, 1)
 x_cal_sueno = np.arange(1, 11, 1)
 x_horas_sueno = np.arange(0, 15, 1)
 x_estres = np.arange(1, 11, 1)
-x_mbi = np.arange(0, 7, 1)
 x_desc = np.arange(1, 4, 1)
 x_apoyo = np.arange(1, 4, 1)
 x_riesgo = np.arange(0, 101, 1)
+x_ae = np.arange(0, 19, 1) 
+x_dp = np.arange(0, 19, 1)   
+x_rp = np.arange(0, 25, 1)
 
 def plot_mf(x, conjuntos, labels, colores, titulo, xlabel, filename):
     fig, ax = plt.subplots(figsize=(8, 4))
@@ -64,41 +66,47 @@ plot_mf(x_estres,
     'Nivel de Estrés Diario', 'Nivel (1-10)', '04_estres')
 
 # 5. Agotamiento emocional
-plot_mf(x_mbi,
-    [fuzz.trimf(x_mbi,[0,0,2]), fuzz.trimf(x_mbi,[1,2.5,4]),
-     fuzz.trimf(x_mbi,[3,4,5]), fuzz.trapmf(x_mbi,[4,5,6,6])],
-    ['Raro/Nunca','Ocasional','Frecuente','Persistente'], ['#4CAF50','#FFC107','#FF9800','#F44336'],
-    'Agotamiento Emocional (MBI)', 'Frecuencia (0-6)', '05_agotamiento_emocional')
+plot_mf(x_ae,
+    [fuzz.trimf(x_ae, [0,0,6]), fuzz.trimf(x_ae, [3,7,12]), 
+     fuzz.trimf(x_ae, [9,13,16]), fuzz.trapmf(x_ae, [13,16,18,18])],
+    ['Raro', 'Ocasional', 'Frecuente', 'Persistente'], ['#4CAF50','#FFC107','#FF9800','#F44336'],
+    'Agotamiento Emocional Acumulado', 'Puntuación Total (0-18)', '05_agotamiento_emocional')
 
 # 6. Fatiga anticipatoria
-plot_mf(x_mbi,
-    [fuzz.trimf(x_mbi,[0,0,2]), fuzz.trimf(x_mbi,[1,3,5]), fuzz.trapmf(x_mbi,[4,5,6,6])],
-    ['Nula','Leve','Severa'], ['#4CAF50','#FF9800','#F44336'],
-    'Fatiga Anticipatoria (MBI)', 'Frecuencia (0-6)', '06_fatiga_anticipatoria')
+plot_mf(x_ae,
+    [fuzz.trimf(x_ae, [0,0,6]), fuzz.trimf(x_ae, [3,9,15]), fuzz.trapmf(x_ae, [12,15,18,18])],
+    ['Nula', 'Leve', 'Severa'], ['#4CAF50','#FF9800','#F44336'],
+    'Fatiga Anticipatoria Acumulada', 'Puntuación Total (0-18)', '06_fatiga_anticipatoria')
 
 # 7. Despersonalización / Cinismo
-plot_mf(x_mbi,
-    [fuzz.trimf(x_mbi,[0,0,2]), fuzz.trimf(x_mbi,[1,3,5]), fuzz.trapmf(x_mbi,[4,5,6,6])],
-    ['Empático/Cercano','Distante','Indiferente/Cínico'], ['#4CAF50','#FF9800','#F44336'],
-    'Despersonalización / Cinismo (MBI)', 'Frecuencia (0-6)', '07_despersonalizacion')
+plot_mf(x_dp,
+    [fuzz.trimf(x_dp, [0,0,6]), fuzz.trimf(x_dp, [3,9,15]), fuzz.trapmf(x_dp, [12,15,18,18])],
+    ['Empático', 'Distante', 'Cínico'], ['#4CAF50','#FF9800','#F44336'],
+    'Despersonalización Acumulada', 'Puntuación Total (0-18)', '07_despersonalizacion')
 
 # 8. Percepción de utilidad (INVERTIDA)
-plot_mf(x_mbi,
-    [fuzz.trimf(x_mbi,[0,0,2]), fuzz.trimf(x_mbi,[1,3,5]), fuzz.trapmf(x_mbi,[4,5,6,6])],
-    ['Inútil/Nulo','Productivo','Muy Valioso'], ['#F44336','#FF9800','#4CAF50'],
-    'Percepción de Utilidad (MBI - Invertida)', 'Frecuencia (0-6)', '08_utilidad')
+plot_mf(x_rp,
+    [fuzz.trimf(x_rp, [0, 0, 10]), 
+     fuzz.trimf(x_rp, [8, 14, 20]), 
+     fuzz.trapmf(x_rp, [16, 20, 24, 24])],
+    ['Inútil / Nulo', 'Productivo', 'Muy Valioso'], ['#F44336', '#FF9800', '#4CAF50'],
+    'Percepción de Utilidad (MBI)', 'Puntuación Total (0-24)', '08_utilidad')
 
 # 9. Autorrealización (INVERTIDA)
-plot_mf(x_mbi,
-    [fuzz.trimf(x_mbi,[0,0,2]), fuzz.trimf(x_mbi,[1,3,5]), fuzz.trapmf(x_mbi,[4,5,6,6])],
-    ['Frustrado','Satisfecho','Plenamente Realizado'], ['#F44336','#FF9800','#4CAF50'],
-    'Autorrealización (MBI - Invertida)', 'Frecuencia (0-6)', '09_autorrealizacion')
+plot_mf(x_rp,
+    [fuzz.trimf(x_rp, [0, 0, 10]), 
+     fuzz.trimf(x_rp, [8, 14, 20]), 
+     fuzz.trapmf(x_rp, [16, 20, 24, 24])],
+    ['Frustrado', 'Satisfecho', 'Plenamente Realizado'], ['#F44336', '#FF9800', '#4CAF50'],
+    'Sentimiento de Autorrealización', 'Puntuación Total (0-24)', '09_autorrealizacion')
 
 # 10. Satisfacción laboral (INVERTIDA)
-plot_mf(x_mbi,
-    [fuzz.trimf(x_mbi,[0,0,2]), fuzz.trimf(x_mbi,[1,3,5]), fuzz.trapmf(x_mbi,[4,5,6,6])],
-    ['Bajo','Medio','Alto'], ['#F44336','#FF9800','#4CAF50'],
-    'Nivel de Satisfacción Laboral (MBI - Invertida)', 'Frecuencia (0-6)', '10_satisfaccion_laboral')
+plot_mf(x_rp,
+    [fuzz.trimf(x_rp, [0, 0, 10]), 
+     fuzz.trimf(x_rp, [8, 14, 20]), 
+     fuzz.trapmf(x_rp, [16, 20, 24, 24])],
+    ['Bajo / Insatisfecho', 'Medio', 'Alto / Pleno'], ['#F44336', '#FF9800', '#4CAF50'],
+    'Satisfacción con el Entorno', 'Puntuación Total (0-24)', '10_satisfaccion_laboral')
 
 # 11. Desconexión mental
 plot_mf(x_desc,
