@@ -129,4 +129,16 @@ plot_mf(x_riesgo,
     ['#2196F3','#4CAF50','#FFC107','#FF9800','#F44336'],
     'Variable de Salida: Riesgo de Burnout', 'Nivel de Riesgo (%)', '13_riesgo_burnout')
 
-print(f"\n13 gráficas guardadas en graficas/")
+# 14. Edad (Variable Demográfica)
+plot_mf(x_desc,
+    [fuzz.trimf(x_desc, [1,1,2]), fuzz.trimf(x_desc, [1,2,3]), fuzz.trimf(x_desc, [2,3,3])],
+    ['18-22 años', '23-30 años', 'Más de 30 años'], ['#2196F3','#4CAF50','#FF9800'],
+    'Edad del Encuestado', 'Rango (1:18-22, 2:23-30, 3:+30)', '14_edad')
+
+# 15. Ocupación Actual (Variable Demográfica)
+plot_mf(x_desc,
+    [fuzz.trimf(x_desc, [1,1,2]), fuzz.trimf(x_desc, [1,2,3]), fuzz.trimf(x_desc, [2,3,3])],
+    ['Estudio', 'Trabajo', 'Ambas'], ['#9C27B0','#3F51B5','#00BCD4'],
+    'Ocupación Actual', 'Tipo (1:Estudio, 2:Trabajo, 3:Ambas)', '15_ocupacion')
+
+print(f"\n15 gráficas guardadas en graficas/")

@@ -1,0 +1,125 @@
+=================================================================
+PROCESAMIENTO BATCH - SISTEMA EXPERTO BURNOUT
+=================================================================
+  Persona   1:  44.4% - MODERADO
+  Persona   2:  25.0% - BAJO
+  Persona   3:  16.5% - MUY BAJO
+  Persona   4:  46.5% - MODERADO
+  Persona   5:  30.4% - BAJO
+  Persona   6:  41.1% - MODERADO
+  Persona   7:  47.9% - MODERADO
+  Persona   8:  32.7% - BAJO
+  Persona   9:  44.6% - MODERADO
+  Persona  10:  28.1% - BAJO
+  Persona  11:  35.0% - BAJO
+  Persona  12:  17.7% - MUY BAJO
+  Persona  13:  30.6% - BAJO
+  Persona  14:  33.9% - BAJO
+  Persona  15:  30.7% - BAJO
+  Persona  16:  37.6% - BAJO
+  Persona  17:  46.4% - MODERADO
+  Persona  18:  30.7% - BAJO
+  Persona  19:  31.3% - BAJO
+  Persona  20:  16.5% - MUY BAJO
+  Persona  21:  47.7% - MODERADO
+  Persona  22:  13.8% - MUY BAJO
+  Persona  23:  16.5% - MUY BAJO
+  Persona  24:  16.5% - MUY BAJO
+  Persona  25:  18.4% - MUY BAJO
+  Persona  26:  44.2% - MODERADO
+  Persona  27:  67.5% - ALTO
+  Persona  28:  30.4% - BAJO
+  Persona  29:  45.8% - MODERADO
+  Persona  30:  43.4% - MODERADO
+  Persona  31:  44.2% - MODERADO
+  Persona  32:  50.0% - MODERADO
+  Persona  33:  30.7% - BAJO
+  Persona  34:  57.4% - MODERADO
+  Persona  35:  44.9% - MODERADO
+  Persona  36:  32.1% - BAJO
+  Persona  37:  41.1% - MODERADO
+  Persona  38:  30.4% - BAJO
+  Persona  39:  16.5% - MUY BAJO
+  Persona  40:  38.1% - BAJO
+  Persona  41:  44.2% - MODERADO
+  Persona  42:  46.8% - MODERADO
+  Persona  43:  30.2% - BAJO
+  Persona  44:  42.6% - MODERADO
+  Persona  45:  17.8% - MUY BAJO
+  Persona  46:  45.5% - MODERADO
+  Persona  47:  30.7% - BAJO
+  Persona  48:  50.0% - MODERADO
+  Persona  49:  47.4% - MODERADO
+  Persona  50:  38.6% - BAJO
+  Persona  51:  47.9% - MODERADO
+  Persona  52:  25.0% - BAJO
+  Persona  53:  41.4% - MODERADO
+  Persona  54:  46.4% - MODERADO
+  Persona  55:  16.5% - MUY BAJO
+  Persona  56:  42.8% - MODERADO
+  Persona  57:  30.7% - BAJO
+  Persona  58:  43.1% - MODERADO
+  Persona  59:  43.4% - MODERADO
+  Persona  60:  37.7% - BAJO
+  Persona  61:  62.0% - ALTO
+  Persona  62:  32.5% - BAJO
+  Persona  63:  30.4% - BAJO
+  Persona  64:  60.1% - ALTO
+  Persona  65:  16.5% - MUY BAJO
+  Persona  66:  15.0% - MUY BAJO
+  Persona  67:  47.9% - MODERADO
+  Persona  68:  32.3% - BAJO
+  Persona  69:  37.0% - BAJO
+  Persona  70:  35.5% - BAJO
+  Persona  71:  45.3% - MODERADO
+  Persona  72:  53.0% - MODERADO
+  Persona  73:  43.9% - MODERADO
+  Persona  74:   6.7% - MUY BAJO
+  Persona  75:  45.8% - MODERADO
+  Persona  76:  30.5% - BAJO
+  Persona  77:  17.8% - MUY BAJO
+  Persona  78:  25.0% - BAJO
+  Persona  79:  37.5% - BAJO
+  Persona  80:  43.7% - MODERADO
+  Persona  81:  30.7% - BAJO
+  Persona  82:  42.9% - MODERADO
+  Persona  83:  51.4% - MODERADO
+  Persona  84:  43.4% - MODERADO
+  Persona  85:  50.0% - MODERADO
+  Persona  86:  50.1% - MODERADO
+  Persona  87:  17.8% - MUY BAJO
+  Persona  88:  55.1% - MODERADO
+  Persona  89:  17.3% - MUY BAJO
+  Persona  90:  41.7% - MODERADO
+  Persona  91:  32.5% - BAJO
+  Persona  92:  25.0% - BAJO
+  Persona  93:  30.7% - BAJO
+  Persona  94:  46.8% - MODERADO
+  Persona  95:  44.6% - MODERADO
+  Persona  96:  39.1% - BAJO
+  Persona  97:  47.6% - MODERADO
+  Persona  98:  27.7% - BAJO
+  Persona  99:  30.7% - BAJO
+  Persona 100:  54.6% - MODERADO
+  Persona 101:  19.1% - MUY BAJO
+  Persona 102:  33.7% - BAJO
+
+Resultados guardados en resultados/resultados_burnout.csv
+
+=============================================
+  ESTADÍSTICAS (102 respuestas)
+=============================================
+  Media:    36.44%
+  Mediana:  37.64%
+  Mínimo:   6.67%
+  Máximo:   67.46%
+  Desv.Std: 12.31%
+
+  Distribución por nivel:
+    MUY BAJO  :  17 (16.7%)
+    BAJO      :  38 (37.3%)
+    MODERADO  :  44 (43.1%)
+    ALTO      :   3 (2.9%)
+    CRÍTICO   :   0 (0.0%)
+
+Gráfica guardada en resultados/distribucion_burnout.png
